@@ -9,13 +9,14 @@
 //   POST /api/checkout           → git checkout <branch>
 
 require('dotenv').config();
-const express  = require('express');
-const cors     = require('cors');
-const { exec } = require('child_process');
-const fs       = require('fs');
-const path     = require('path');
 
-const app  = express();
+const express = require('express');
+const cors = require('cors');
+const { exec } = require('child_process');
+const fs = require('fs');
+const path = require('path');
+
+const app = express();
 const PORT = process.env.PORT || 3000;
 const ROOT = process.env.ROOT || path.resolve(__dirname, '..');
 
@@ -82,7 +83,7 @@ app.get('/api/branches', async (req, res) => {
   try {
     const repoAbs = safeResolve(req.query.repo || '');
     // Fetch latest remote branches first (so new branches show up)
-    try { await run('git fetch --prune', repoAbs); } catch (_) {}
+    try { await run('git fetch --prune', repoAbs); } catch (_) { }
     const { stdout } = await run('git branch -a', repoAbs);
     const branches = stdout
       .split('\n')
@@ -110,7 +111,7 @@ app.get('/api/current-branch', async (req, res) => {
 app.post('/api/pull', async (req, res) => {
   try {
     const repoAbs = safeResolve(req.body.repo || '');
-    const result  = await run('git pull', repoAbs);
+    const result = await run('git pull', repoAbs);
     res.json({ ok: true, output: result.stdout || result.stderr });
   } catch (e) {
     res.status(500).json({ ok: false, error: e.message || e, output: e.stderr || '' });
@@ -121,9 +122,9 @@ app.post('/api/pull', async (req, res) => {
 app.post('/api/checkout', async (req, res) => {
   try {
     const repoAbs = safeResolve(req.body.repo || '');
-    const branch  = req.body.branch;
+    const branch = req.body.branch;
     if (!branch) return res.status(400).json({ error: 'branch is required' });
-    const result  = await run(`git checkout ${branch}`, repoAbs);
+    const result = await run(`git checkout ${branch}`, repoAbs);
     res.json({ ok: true, output: result.stdout || result.stderr });
   } catch (e) {
     res.status(500).json({ ok: false, error: e.message || e, output: e.stderr || '' });
