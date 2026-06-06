@@ -1,7 +1,9 @@
 // script.js – File preview + Git repo controls
 // ─────────────────────────────────────────────────────────────────
-const API = 'http://localhost:3000';
-
+// Change the 'https://...' URL below to your actual Render URL after deploying!
+const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+  ? 'http://localhost:3000' 
+  : 'https://systemaccess-backend.onrender.com';
 // ─────────────────────────────────────────────────────────────────
 // 1. Backend health check
 // ─────────────────────────────────────────────────────────────────
