@@ -42,8 +42,12 @@ html, body {
   margin: 1.5rem 0;
   padding: 0.75rem 1.5rem;
   background: rgba(255, 255, 255, 0.12);
+  border: none;
   border-radius: 8px;
+  color: #f0f0f0;
   cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
   font-weight: 600;
   transition: background 0.3s ease, transform 0.2s ease;
 }
@@ -104,4 +108,107 @@ html, body {
 .preview::-webkit-scrollbar-thumb {
   background: rgba(255,255,255,0.2);
   border-radius: 4px;
+}
+
+/* ─── Preview Modal ─────────────────────────────────────────── */
+#fileModal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  box-sizing: border-box;
+  animation: fadeIn 0.18s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+#modalCard {
+  background: rgba(26, 26, 51, 0.95);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  width: 90%;
+  max-width: 760px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+}
+
+#modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  flex-shrink: 0;
+}
+
+#modalTitle {
+  font-weight: 600;
+  font-size: 0.95rem;
+  word-break: break-all;
+  opacity: 0.9;
+}
+
+#modalClose {
+  background: none;
+  border: none;
+  color: #f0f0f0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+
+#modalClose:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#modalBody {
+  padding: 1.2rem;
+  overflow-y: auto;
+  overflow-x: auto;
+  flex: 1;
+  color: #f0f0f0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+#modalBody pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: 'Fira Mono', 'Cascadia Code', 'Courier New', monospace;
+  font-size: 0.85rem;
+}
+
+/* Modal scrollbar */
+#modalBody::-webkit-scrollbar { width: 6px; }
+#modalBody::-webkit-scrollbar-track { background: transparent; }
+#modalBody::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+}
+
+/* Highlight on hoverable rows */
+.preview li:hover .file-name {
+  color: #a78bfa;
+  transition: color 0.2s;
 }
