@@ -5,20 +5,43 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>File System Preview</title>
-  <meta name="description" content="Select a folder on your computer and preview its contents directly in the browser." />
+  <meta name="description" content="Browse your local file system, preview files, and manage git repos." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main class="container">
+
+    <!-- ── Header ─────────────────────────────────── -->
     <h1 class="title">File System Preview</h1>
-    <p class="subtitle">Choose a folder and explore its files instantly.</p>
-<button class="folder-btn" id="pickBtn">📁 Select Files</button>
-<input type="file" id="folderInput" multiple style="display:none;" />
-<section id="preview" class="preview"></section>
+    <p class="subtitle">Browse files · Preview content · Manage git repos</p>
+
+    <!-- ── File Picker ────────────────────────────── -->
+    <button class="folder-btn" id="pickBtn">📁 Select Folder</button>
+    <input type="file" id="folderInput" multiple style="display:none;" />
+
+    <!-- ── File List ──────────────────────────────── -->
+    <section id="preview" class="preview"></section>
+
+    <!-- ── Git Repos ──────────────────────────────── -->
+    <div id="reposSection" class="repos-section" style="display:none;">
+      <div class="repos-header">
+        <h2 class="repos-title">🔀 Git Repositories</h2>
+        <span id="repoCount" class="repo-count"></span>
+      </div>
+      <div id="reposList"></div>
+    </div>
+
+    <!-- ── Server status indicator ────────────────── -->
+    <div id="serverStatus" class="server-status">
+      <span id="serverDot" class="status-dot offline"></span>
+      <span id="serverLabel">Backend: checking…</span>
+    </div>
+
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>
