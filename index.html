@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File System Preview</title>
+  <meta name="description" content="Select a folder on your computer and preview its contents directly in the browser." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1 class="title">File System Preview</h1>
+    <p class="subtitle">Choose a folder and explore its files instantly.</p>
+<button class="folder-btn" id="pickBtn">📁 Select Files</button>
+<input type="file" id="folderInput" multiple style="display:none;" />
+<section id="preview" class="preview"></section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
